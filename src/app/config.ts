@@ -1,0 +1,6 @@
+export const {
+  GITHUB_CLIENT_ID,
+  GITHUB_CLIENT_SECRET,
+  PUSHER_APP_ID,
+  PUSHER_SECRET
+} = process.env
