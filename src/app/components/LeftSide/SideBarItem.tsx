@@ -15,7 +15,7 @@ interface SideBarItemProps extends ItemProps {
 }
 
 export const Item: React.FC<ItemProps> = ({ link, title, icon, type = 'general' }) => (
-  <Link href={link ?? '#'} className='group flex items-center text-gray-600  px-4 py-2 crounded hover:bg-[#AEC8CA]/30 ease-in-out duration-300'>
+  <Link href={link ?? '#'} className='group flex items-center text-white px-4 py-2 crounded hover:bg-[#AEC8CA]/30 ease-in-out duration-300'>
     <span className={`flex gap-2 ${type === 'list' ? 'text-sm font-medium' : 'text-base font-bold '} `}>{icon} {title} </span>
   </Link>
 )
@@ -27,7 +27,7 @@ const SideBarItem: React.FC<SideBarItemProps> = ({ title, children, type, icon, 
 
   return (
     <div className='flex flex-col' onClick={() => setShowOptions(!showOptions)}>
-      <div className='group cursor-pointer flex items-center text-gray-600  px-4 py-2 crounded hover:bg-[#AEC8CA]/30 ease-in-out duration-300'>
+      <div className='group cursor-pointer flex items-center text-white px-4 py-2 crounded hover:bg-white/30 ease-in-out duration-300'>
         <span className='flex gap-2 font-bold'>{icon} {title} </span>
       </div>
       {

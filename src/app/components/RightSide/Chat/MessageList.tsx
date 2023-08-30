@@ -42,11 +42,11 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
   }, [totalMessages])
 
   return (
-    <div className='h-[200px] overflow-hidden'>
+    <div className='h-[500px] overflow-y-scroll pr-2 flex flex-col gap-2 rounded-sm'>
       {totalMessages.map(msg => (
-        <div key={msg.id}>
-          <h3> {msg.User?.name} </h3>
-          <p> {msg.message} </p>
+        <div key={msg.id} className='bg-primary/80 rounded-sm p-2'>
+          <h3 className='text-secondary font-semibold text-sm'> {msg.User?.name}:</h3>
+          <p className='break-words text-sm text-white'> {msg.message} </p>
         </div>
       ))}
       <div ref={messageEndRef} />

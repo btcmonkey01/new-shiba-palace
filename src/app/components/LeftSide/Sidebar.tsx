@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { HiHome } from 'react-icons/hi'
 import SideBarItem, { Item } from './SideBarItem'
 
-const sideBarItemStyles = 'group-hover:text-[#82AAAD] ease-in-out duration-300'
+const sideBarItemStyles = 'group-hover:text-white ease-in-out duration-300'
 
 const items = [
   {
@@ -29,43 +29,41 @@ const items = [
 
 const Sidebar = () => {
   return (
-    <div className='fixed left-0 m-8 flex flex-col gap-4'>
-      <div className='flex flex-col items-start justify-center gap-1'>
-        <div className='animatedLogoBackground w-full crounded flex'>
-          {/* <img src="" className='w-[80px]' alt="Shiba Palace" /> */}
+    <div className='fixed h-[calc(100vh-64px)] left-0 m-8 flex flex-col justify-between'>
+      <div className='flex flex-col gap-4'>
+        <div className='flex flex-col items-start justify-center gap-1'>
+          <div className='animatedLogoBackground w-full crounded flex'>
+            <img src="./logo1.webp" className='w-[120px]' alt="Shiba Palace" />
+          </div>
         </div>
-      </div>
-      <div className='flex flex-col gap-1'>
-        {/*         {
-          items.map(i => (
-            <SideBarItem
-              icon={<HiHome className={`text-xl ${sideBarItemStyles}`} />}
-              type='list'
-              title='Contenido'>
-              {
-                i.subcategories?.map(sub => (
-                  <Item link='/categories/contenido' type='list' title={'Ultimas Noticias'} icon={<HiHome className={`text-base ${sideBarItemStyles}`} />} ></Item>
-                ))
-              }
-            </SideBarItem>
-          ))
-        } */}
-        <SideBarItem link='#'
-          icon={<HiHome className={`text-xl ${sideBarItemStyles}`} />}
-          type='general'
-          title='Inicio'>
-        </SideBarItem>
+        <div className='flex flex-col gap-1'>
+          <SideBarItem link='#'
+            icon={<HiHome className={`text-xl ${sideBarItemStyles}`} />}
+            type='general'
+            title='Home'>
+          </SideBarItem>
+          <SideBarItem link='#'
+            icon={<HiHome className={`text-xl ${sideBarItemStyles}`} />}
+            type='general'
+            title='Games'>
+          </SideBarItem>
 
-        <SideBarItem
+          {/*         <SideBarItem
           icon={<HiHome className={`text-xl ${sideBarItemStyles}`} />}
           type='list'
           title='Contenido'>
           <Item link='/categories/contenido' type='list' title={'Ultimas Noticias'} icon={<HiHome className={`text-base ${sideBarItemStyles}`} />} ></Item>
           <Item link='#Videos Principales' type='list' title={'Principales videos'} icon={<HiHome className={`text-base ${sideBarItemStyles}`} />} ></Item>
           <Item link='#Otros videos' type='list' title={'Otros videos'} icon={<HiHome className={`text-base ${sideBarItemStyles}`} />} ></Item>
-        </SideBarItem>
+        </SideBarItem> 
+        */}
+        </div>
       </div>
 
+      <div>
+        <div>Wallet</div>
+        <div>Login</div>
+      </div>
     </div>
   )
 }

@@ -17,7 +17,6 @@ export const getMessages = async () => {
     orderBy: {
       createdAt: 'asc'
     },
-    take: 50
   })
 
   return data;
@@ -28,7 +27,7 @@ const Chat = async () => {
   const messages = await getMessages();
 
   return (
-    <div>
+    <div className='w-full flex flex-col gap-2'>
       <MessageList messages={messages}/>
       <FormMessage/>
     </div>

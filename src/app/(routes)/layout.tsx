@@ -24,7 +24,7 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions)
 
   return (
-    <html lang="en" className='scroll-smooth bg-gray-700'>
+    <html lang="en" className='scroll-smooth bg-shibaBackground'>
       <body className={`${popins.className}`}>
         <NextAuthProvider>
           <div className='flex justify-center'>
@@ -33,9 +33,9 @@ export default async function RootLayout({
               {children}
             </div>
             <RightSide />
-            {
+{/*             {
               session ? <p> <Logout></Logout> </p> : <NavLogin></NavLogin>
-            }
+            } */}
           </div>
         </NextAuthProvider>
       </body>
