@@ -24,7 +24,6 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
     var channel = pusher.subscribe('chat');
     channel.bind('hello', function (data: any) {
       const parsedComments = JSON.parse(data.message);
-      console.log('working')
       setTotalMessages(prev => [...prev, parsedComments])
     });
 
@@ -42,10 +41,11 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
   }, [totalMessages])
 
   return (
-    <div className='h-[500px] overflow-y-scroll pr-2 flex flex-col gap-2 rounded-sm'>
+    <div id='messages' className='overflow-y-scroll flex flex-col gap-2 rounded-sm'>
       {totalMessages.map(msg => (
-        <div key={msg.id} className='bg-primary/80 rounded-sm p-2'>
-          <h3 className='text-secondary font-semibold text-sm'> {msg.User?.name}:</h3>
+        <div key={msg.id} className='bg-primary/50 border border-white/30 hover:bg-primary ease-in-out duration-300 rounded-sm p-2'>
+          {/* <h3 className='text-secondary font-semibold text-sm'> {msg.User?.name}:</h3> */}
+          <h3 className='text-secondary font-semibold text-sm'> bigtrader69:</h3>
           <p className='break-words text-sm text-white'> {msg.message} </p>
         </div>
       ))}

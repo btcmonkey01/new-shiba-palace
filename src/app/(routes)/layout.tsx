@@ -5,7 +5,7 @@ import RightSide from '../components/RightSide/RightSide'
 import { Poppins } from 'next/font/google'
 import { NextAuthProvider } from '../components/Providers/Providers'
 import { authOptions } from '../lib/auth'
-import {getServerSession} from 'next-auth'
+import { getServerSession } from 'next-auth'
 import { Logout, NavLogin } from '../components/Buttons/Buttons'
 
 const popins = Poppins({ subsets: ['latin'], weight: '400' })
@@ -29,11 +29,11 @@ export default async function RootLayout({
         <NextAuthProvider>
           <div className='flex justify-center'>
             <Sidebar />
-            <div className='w-[60vw] my-8'>
+            <div className='w-full lg:w-[60vw] py-4'>
               {children}
             </div>
             <RightSide />
-{/*             {
+            {/*             {
               session ? <p> <Logout></Logout> </p> : <NavLogin></NavLogin>
             } */}
           </div>

@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react'
+"use client"
+import React, { ReactNode, useState } from 'react'
 import { HiHome } from 'react-icons/hi'
 import SideBarItem, { Item } from './SideBarItem'
-
+import { BiArrowToRight, BiArrowToLeft } from 'react-icons/bi'
 const sideBarItemStyles = 'group-hover:text-white ease-in-out duration-300'
 
 const items = [
@@ -28,8 +29,19 @@ const items = [
 ]
 
 const Sidebar = () => {
+
+  const [showBar, setShowBar] = useState(true)
+  /*   */
   return (
-    <div className='fixed h-[calc(100vh-64px)] left-0 m-8 flex flex-col justify-between'>
+    <aside className={`${!showBar ? 'left-[-300px]' : 'left-0'} transition-all duration-100 bg-primary lg:bg-transparent z-10 flex flex-col justify-between fixed border-r-2 border-white/30 h-screen w-[300px] lg:w-[15vw] left-0 p-4`}>
+      <button
+        type='button'
+        onClick={() => setShowBar(!showBar)}
+        className='flex lg:hidden absolute justify-center items-center right-[-40px] 
+        w-10 h-10 
+        bg-secondary/80 hover:bg-secondary ease-in-out duration-300 rounded-sm'>
+        {!showBar ? <BiArrowToRight className='text-2xl text-white' /> : <BiArrowToLeft className='text-2xl text-white' />}
+      </button>
       <div className='flex flex-col gap-4'>
         <div className='flex flex-col items-start justify-center gap-1'>
           <div className='animatedLogoBackground w-full crounded flex'>
@@ -61,10 +73,9 @@ const Sidebar = () => {
       </div>
 
       <div>
-        <div>Wallet</div>
-        <div>Login</div>
+        <img src="./Wallet.webp" alt="" className='w-[120px] buttons-animation' />
       </div>
-    </div>
+    </aside>
   )
 }
 

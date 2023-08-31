@@ -12,15 +12,15 @@ const FormMessage = () => {
         formRef.current?.reset()
         await postData(formData)
       }}>
-      <div className='flex w-full p-1 bg-white rounded-sm'>
+      <div className='flex w-full justify-between p-1 bg-white rounded-sm'>
         <input
           name='message'
           placeholder='type your message...'
           type="text"
-          className='p-2 flex-1 text-sm outline-none'
+          className='p-1 w-2/3 text-sm outline-none'
         /* border-none w-full text-sm sm:text-base  rounded-full focus:ring-secondary/50 placeholder:italic */
         />
-        <button className='w-fit px-2 bg-white' type='submit'>
+        <button className='w-1/3 flex justify-center items-center px-2 bg-white' type='submit'>
           <BiMailSend
             className='text-xl text-gray-400 hover:text-secondary ease-in-out duration-300'>
           </BiMailSend>

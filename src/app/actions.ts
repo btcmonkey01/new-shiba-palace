@@ -38,3 +38,21 @@ export async function postData(formData: FormData) {
   })
 }
 
+export const getMessages = async () => {
+  const data = await prisma.message.findMany({
+    select: {
+      message: true,
+      id: true,
+      User: {
+        select: {
+          name: true
+        }
+      }
+    },
+    orderBy: {
+      createdAt: 'asc'
+    },
+  })
+
+  return data;
+}
