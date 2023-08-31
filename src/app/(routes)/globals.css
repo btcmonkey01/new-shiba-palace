@@ -81,6 +81,9 @@ td img {
   }
 }
 
+#mainContent::-webkit-scrollbar {
+  width: 5px;
+}
 
 #messages::-webkit-scrollbar {
   width: 0px;
