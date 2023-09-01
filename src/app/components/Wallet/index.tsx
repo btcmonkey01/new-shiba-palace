@@ -47,7 +47,7 @@ export const Wallet = () => {
 
   if (status === "connecting") return <div>Connecting...</div>
 
-  if (status === "connected") return <div className="flex flex-row place-items-center gap-4 px-4 py-2">
+  if (status === "connected") return <div className="flex flex-row place-items-center gap-2 px-4 py-2">
     <img src={profileImage} className="rounded-full" />
     <p className="text-white font-bold">{reduceAddressString(account)}</p>
   </div>

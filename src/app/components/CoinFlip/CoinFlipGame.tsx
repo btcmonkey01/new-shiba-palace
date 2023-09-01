@@ -7,10 +7,13 @@ import { CSSProperties, MouseEvent, useState } from "react";
 import { Modal } from "../Modal/modal";
 import { CoinFlipWin } from "./CoinFlipWin";
 import { CoinFlipLose } from "./CoinFlipLose";
+import { useWindowSize } from "@react-hook/window-size";
+import Confetti from 'react-confetti'
 
 export const CoinFlipGame = ({ }) => {
 
   const [selectImage, setSelectImage] = useState<boolean>(false);
+  const [width, height] = useWindowSize()
 
   const {
     betAmount,
@@ -45,23 +48,23 @@ export const CoinFlipGame = ({ }) => {
     margin: "auto auto",
   }
 
-  console.log({result})
+  console.log({ result })
 
   return <div className="flex flex-col gap-6">
     <div className="flex justify-center ">
       {
-        loadingFlip ? 
-        <img className="w-80 aspect-square rounded-full" src="/images/coinFlip.gif" alt="coin rotating" />
-        : <div>
-          {
-            <div className={"transition-all duration-200 " + (coinSelection === CoinFlipSelection.TAILS ? "flip": "")}>
-              {
-                coinSelection === CoinFlipSelection.HEADS ? <img className="w-80 aspect-square" src="Token.webp"/>
-                : <img className="w-80 aspect-square" src="Token_tail.webp"/>
-              }
-            </div> 
-          }
-        </div>
+        loadingFlip ?
+          <img className="w-80 aspect-square rounded-full" src="/images/coinFlip.gif" alt="coin rotating" />
+          : <div>
+            {
+              <div className={"transition-all duration-200 " + (coinSelection === CoinFlipSelection.TAILS ? "flip" : "")}>
+                {
+                  coinSelection === CoinFlipSelection.HEADS ? <img className="w-80 aspect-square" src="Token.webp" />
+                    : <img className="w-80 aspect-square" src="Token_tail.webp" />
+                }
+              </div>
+            }
+          </div>
       }
     </div>
     <div className="flex justify-center text-2xl font-black text-white">
@@ -148,14 +151,21 @@ export const CoinFlipGame = ({ }) => {
       </button>
     </div>
     <Modal
-      open={Boolean(result)}
+      /* open={Boolean(result)} */
+      open={true}
       close={resetResult}
     >
       {
-        result?.didWin ? (
-          <CoinFlipWin/>
+        !result?.didWin ? (
+          <>
+            <Confetti
+              width={width}
+              height={height}
+            />
+            <CoinFlipWin />
+          </>
         ) : (
-          <CoinFlipLose/>
+          <CoinFlipLose />
         )
       }
     </Modal>

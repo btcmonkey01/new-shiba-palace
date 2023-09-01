@@ -8,14 +8,37 @@ const FormMessage = () => {
   const formRef = useRef<HTMLFormElement>(null)
   const { account } = useMetaMask()
 
-  if(!account) return
+  /*   const handleFormSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+  
+      if(!formRef.current) return
+  
+      const formData = new FormData();
+  
+      // Obtener el valor del campo de mensaje del formData
+      const message = formData.get('message') as string;
+  
+      if (!message.trim()) {
+        // El campo del mensaje está vacío, no se envía nada
+        return;
+      }
+  
+      formRef.current?.reset();
+      await postData(message, account);
+    } */
+
+  if (!account) return (
+    <p className='text-white font-semibold text-center'>Connect your Wallet to Chat</p>
+  )
 
   return (
     <form
       ref={formRef}
       action={async (formData) => {
-        formRef.current?.reset()
-        await postData(formData, account)
+        if (formData.get('message') !== '') {
+          formRef.current?.reset()
+          await postData(formData, account)
+        }
       }}>
       <div className='flex w-full justify-between p-1 bg-white rounded-sm'>
         <input
