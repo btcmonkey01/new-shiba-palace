@@ -44,8 +44,10 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
     <div id='messages' className='overflow-y-scroll flex flex-col gap-2 rounded-sm'>
       {totalMessages.map(msg => (
         <div key={msg.id} className='bg-primary/50 border border-white/30 hover:bg-primary ease-in-out duration-300 rounded-sm p-2'>
-          {/* <h3 className='text-secondary font-semibold text-sm'> {msg.User?.name}:</h3> */}
-          <h3 className='text-secondary font-semibold text-sm'> bigtrader69:</h3>
+          <span className='text-secondary font-semibold text-sm flex items-center gap-1'>
+            <img src="./Hat.webp" alt="User hat" className='w-4 h-fit' />
+            bigtrader69:
+          </span>
           <p className='break-words text-sm text-white'> {msg.message} </p>
         </div>
       ))}

@@ -98,3 +98,15 @@ td img {
   background-color: #fff;
   border-radius: 5px;
 }
+.box {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s; /* Agrega una transición suave a todos los cambios */
+}
+
+.box > div {
+  overflow: hidden;
+}
+.expanded {
+  grid-template-rows: 1fr;
+}
