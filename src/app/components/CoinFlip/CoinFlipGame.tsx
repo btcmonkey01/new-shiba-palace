@@ -17,12 +17,9 @@ export const CoinFlipGame = ({ }) => {
     setCoinSelection,
     flip,
     result,
-    eventConnected
+    resetResult,
+    eventConnected,
   } = useCoinFlip();
-
-  const {
-    gameHistory
-  } = useGameHistory();
 
   const onCoinSelection = (e: MouseEvent<HTMLButtonElement>) => {
     const value = e.currentTarget.value;
@@ -45,12 +42,23 @@ export const CoinFlipGame = ({ }) => {
     margin: "auto auto",
   }
 
+  console.log({result})
+
   return <div className="flex flex-col gap-6">
     <div className="flex justify-center ">
       {
-        loadingFlip ?
-          <img className="w-80 aspect-square" src="/image/coinFlig.gif" alt="coin rotating" />
-          : <img className="w-80 aspect-square" src="Token.webp" />
+        loadingFlip ? 
+        <img className="w-80 aspect-square rounded-full" src="/images/coinFlip.gif" alt="coin rotating" />
+        : <div>
+          {
+            <div className={"transition-all duration-200 " + (coinSelection === CoinFlipSelection.TAILS ? "flip": "")}>
+              {
+                coinSelection === CoinFlipSelection.HEADS ? <img className="w-80 aspect-square" src="Token.webp"/>
+                : <img className="w-80 aspect-square" src="Token_tail.webp"/>
+              }
+            </div> 
+          }
+        </div>
       }
     </div>
     <div className="flex justify-center text-2xl font-black text-white">
@@ -100,7 +108,7 @@ export const CoinFlipGame = ({ }) => {
       {
         getBetAmountList().map(({ amount, img, aspectRatio }, i) => {
           return (
-            <div key={i} className={`border-4 border-white rounded-lg hover:scale-105 ease-in-out duration-200 ${betAmount === amount ? 'opacity-1 scale-105' : 'opacity-50 hover:opacity-75'}`}>
+            <div key={amount} className={`border-4 border-white rounded-lg hover:scale-105 ease-in-out duration-200 ${betAmount === amount ? 'opacity-1 scale-105' : 'opacity-50 hover:opacity-75'}`}>
               <button
                 className={`border-4 border-black h-full w-40 py-2 rounded-[5px] bg-secondary`}
                 key={amount}

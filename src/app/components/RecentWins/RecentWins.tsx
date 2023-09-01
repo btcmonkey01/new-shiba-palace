@@ -2,7 +2,6 @@
 import { useGameHistory } from '@/app/context/game-history'
 import { GameType } from '@/app/types/types'
 import { reduceAddressString } from '@/app/utils/web'
-import { stat } from 'fs'
 import { useMetaMask } from 'metamask-react'
 import { useCallback, useMemo } from 'react'
 

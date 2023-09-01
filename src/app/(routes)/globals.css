@@ -108,3 +108,7 @@ td img {
 .expanded {
   grid-template-rows: 1fr;
 }
+
+.flip {
+  transform: rotateY(180deg);
+}

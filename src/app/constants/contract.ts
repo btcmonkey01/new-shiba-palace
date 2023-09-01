@@ -1,4 +1,4 @@
-export const COIN_FLIP_ADDRESS = '0x8d33608fc030cBEBf0c997070a26C54e15690749';  //shibarium beta
+export const COIN_FLIP_ADDRESS = process.env.NEXT_PUBLIC_COIN_FLIP_ADDRESS ?? "0x8d33608fc030cBEBf0c997070a26C54e15690749";  //shibarium beta
 
 export const COIN_FLIP_ABI = [
 	{
@@ -14,6 +14,12 @@ export const COIN_FLIP_ABI = [
 				"internalType": "address",
 				"name": "sender",
 				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
 			},
 			{
 				"indexed": false,
@@ -81,6 +87,19 @@ export const COIN_FLIP_ABI = [
 			}
 		],
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address payable",
+				"name": "newContract",
+				"type": "address"
+			}
+		],
+		"name": "migrateVersion",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{

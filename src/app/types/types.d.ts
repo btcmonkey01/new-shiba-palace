@@ -2,7 +2,7 @@
 export type GamePlayed = {
   game: GameType
   address: string
-  timestamp: number
+  timestamp: string
   betAmount: string
   payout: string
   didWin: boolean

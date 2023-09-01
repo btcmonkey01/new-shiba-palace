@@ -17,6 +17,7 @@ interface CoinFlipProps {
   result?: GamePlayed,
   setCoinSelection: Dispatch<SetStateAction<CoinFlipSelection>>,
   setBetAmount: Dispatch<SetStateAction<string>>,
+  resetResult: () => void;
 }
 
 const initialValues: CoinFlipProps= {
@@ -27,6 +28,7 @@ const initialValues: CoinFlipProps= {
   flip: () => {},
   setCoinSelection: () => {},
   setBetAmount: () => {},
+  resetResult: () => {},
 }
 
 const CoinFlipContext = createContext<CoinFlipProps>(initialValues);
@@ -40,7 +42,6 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
   const [ result, setResult ] = useState<GamePlayed | undefined>(undefined);
   const { account, ethereum } = useMetaMask();
   const { addNewGamePlayed } = useGameHistory();
-
 
   const canFlip = (): boolean => {
     if(!account) {
@@ -78,8 +79,10 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
         account: account,
         onConnected: (event) => setEventConnected(true),
         onTrigger: (event) => { 
-          const result: GamePlayed = parseCoinFlipEvent(event);
-          setResult(result);
+          const game: GamePlayed = parseCoinFlipEvent(event);
+          console.log({game, event})
+          setResult(game);
+          addNewGamePlayed(game);
           console.log({event})
         },
         onError: (event) => {
@@ -95,6 +98,10 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
     }
   }, [account])
 
+  const resetResult = () => {
+    setResult(undefined);
+  }
+
   return (
     <CoinFlipContext.Provider value={{
       betAmount,
@@ -104,7 +111,8 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
       setCoinSelection,
       flip,
       result,
-      eventConnected
+      eventConnected,
+      resetResult
     }}>
       {children}
     </CoinFlipContext.Provider>
