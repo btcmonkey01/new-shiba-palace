@@ -1,28 +1,23 @@
 "use server"
-import { getServerSession } from "next-auth";
-import { authOptions } from "./lib/auth";
 import { prisma } from "./lib/db";
 import { PUSHER_APP_ID, PUSHER_SECRET } from "./config";
+import { reduceAddressString } from "./utils/web";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./lib/auth";
 
-export async function postData(formData: FormData) {
+export async function postData(formData: FormData, account: string) {
   'use server'
   const Pusher = require('pusher')
 
+  const _address = reduceAddressString(account)
   const session = await getServerSession(authOptions);
   const message = formData.get('message')
 
   const data = await prisma.message.create({
     data: {
       message: message as string,
-      email: session?.user?.email
+      email: _address
     },
-    include: {
-      User: {
-        select: {
-          name: true
-        }
-      }
-    }
   })
 
   const pusher = new Pusher({

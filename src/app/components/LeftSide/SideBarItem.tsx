@@ -1,6 +1,7 @@
 "use client"
 import Link from 'next/link'
 import React, { ReactNode, useState } from 'react'
+import { toast } from 'react-hot-toast'
 
 type itemType = 'list' | 'general'
 
@@ -22,7 +23,13 @@ export const Item: React.FC<ItemProps> = ({ link, title, icon, type = 'general' 
           <span className={`flex items-center gap-2 text-sm font-bold`}>{icon} {title} </span>
         </Link>
         :
-        <div className='cursor-pointer group flex items-center text-white px-4 py-2 crounded hover:bg-[#AEC8CA]/30 ease-in-out duration-300'>
+        <div 
+        onClick={()=>{
+          toast('Coming Soon', {
+            icon: '🧑‍🏭',
+          });
+        }}
+        className='cursor-pointer group flex items-center text-white px-4 py-2 crounded hover:bg-[#AEC8CA]/30 ease-in-out duration-300'>
           <span className={`flex items-center gap-2 text-sm font-bold`}>{icon} {title} </span>
         </div>
     }

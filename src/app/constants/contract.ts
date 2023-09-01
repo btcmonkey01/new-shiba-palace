@@ -181,7 +181,7 @@ export const COIN_FLIP_ABI = [
 	}
 ] as const 
 
-export const betAmountList = [
+export const betAmountListDev = [
 	{
 		amount: "0.005",
 		img: "/images/0.5bone.webp",
@@ -209,7 +209,7 @@ export const betAmountList = [
 	}
 ]
 
-export const betAmountListDev = [
+export const betAmountList = [
 	{
 		amount: "0.5",
 		img: "/images/0.5bone.webp",

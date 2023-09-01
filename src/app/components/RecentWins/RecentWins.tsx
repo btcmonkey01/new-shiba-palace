@@ -49,8 +49,8 @@ const RecentWins = ({filterGame}: RecentWinsProps) => {
   return (
     <div className='w-full hidden lg:flex flex-col gap-2'>
       <div className='font-bold text-lg text-white'>RECENT WINS</div>
-      <div className='border-4 bg-secondary/70 border-black w-full rounded-lg'>
-        <table className='w-full border-4 border-white'>
+      <div className='border-4 bg-secondary/70 border-white w-full rounded-lg'>
+        <table className='w-full border-4 '>
           <thead>
             <tr>
               <th>GAME</th>
@@ -70,7 +70,7 @@ const RecentWins = ({filterGame}: RecentWinsProps) => {
         </table>
         {
           (status !== 'connected' || filteredGameHistory.length === 0) &&
-          <div className='grid place-items-center h-60 border-4 border-white'>
+          <div className='grid place-items-center h-60 border-4 border-black'>
             <p className='text-white font-bold'>
               {
                 status !== 'connected' ? "Connet your Wallet" : filteredGameHistory.length === 0 && "Start flip now"

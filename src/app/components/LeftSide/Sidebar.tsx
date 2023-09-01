@@ -9,35 +9,12 @@ import { Wallet } from '../Wallet'
 import { toast } from 'react-hot-toast'
 const sideBarItemStyles = 'group-hover:text-white ease-in-out duration-300'
 
-const items = [
-  {
-    category: 'Noticias'
-  },
-  {
-    category: 'Ultimos Videos'
-  },
-  {
-    category: 'Contenido BDO',
-    subcategories: [
-      {
-        categorie: 'Primeros Pasos(link directo)'
-      },
-      {
-        categorie: 'Guías Principales(link directo)'
-      },
-      {
-        categorie: 'Guías PVE(subcategoria)'
-      },
-    ]
-  },
-]
-
 const Sidebar = () => {
 
-  const [showBar, setShowBar] = useState(true)
-  /*   */
+  const [showBar, setShowBar] = useState(false)
+  
   return (
-    <aside className={`${!showBar ? 'left-[-300px]' : 'left-0'} transition-all duration-100 bg-primary lg:bg-transparent z-10 flex flex-col justify-between fixed border-r-2 border-white/30 h-screen w-[300px] lg:w-[15vw] left-0 p-4`}>
+    <aside className={`${!showBar ? 'left-[-300px]' : 'left-0'} transition-all duration-100 bg-primary lg:bg-transparent z-10 flex flex-col justify-between fixed border-r-2 border-white/30 h-screen w-[300px] lg:w-[15vw] lg:left-0 p-4`}>
       <button
         type='button'
         onClick={() => setShowBar(!showBar)}
@@ -70,7 +47,7 @@ const Sidebar = () => {
             icon={<PiGameControllerLight className={`text-xl ${sideBarItemStyles}`} />}
             type='list'
             title='Games'>
-            <Item title='Shibaflip' icon={<img src="./flipIcon.webp" alt="Spanish Flag" className='w-8' />} />
+            <Item link='/coin-flip' title='Shibaflip' icon={<img src="./flipIcon.webp" alt="Spanish Flag" className='w-8' />} />
             <Item title='Shibaslots' icon={<img src="./slotsIcon.webp" alt="Korean Flag" className='w-8' />} />
             <Item title='Shibacrash' icon={<img src="./crashIcon.webp" alt="Chinese Flag" className='w-8' />} />
             <Item title='Shibaroulette' icon={<img src="./rouletteIcon.webp" alt="Chinese Flag" className='w-8 ' />} />
@@ -85,9 +62,7 @@ const Sidebar = () => {
           </SideBarItem>
         </div>
       </div>
-
       <div>
-        <img src="./Wallet.webp" alt="" className='w-[120px] buttons-animation' onClick={() => toast.error("Test Toats")} />
         <Wallet />
       </div>
     </aside>

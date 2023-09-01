@@ -7,11 +7,7 @@ export const getMessages = async () => {
     select: {
       message: true,
       id: true,
-      User: {
-        select: {
-          name: true
-        }
-      }
+      email: true,
     },
     orderBy: {
       createdAt: 'asc'
@@ -27,7 +23,7 @@ const Chat = async () => {
   const messages = await getMessages()
 
   return (
-    <div className='w-full h-[90%] flex flex-col gap-4'>
+    <div className='w-full h-[90%] flex flex-col justify-between gap-4'>
       <MessageList messages={messages} />
       <FormMessage />
     </div>

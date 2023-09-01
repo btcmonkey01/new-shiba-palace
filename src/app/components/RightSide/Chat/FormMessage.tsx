@@ -1,16 +1,21 @@
 "use client"
 import { postData } from '@/app/actions'
+import { useMetaMask } from 'metamask-react'
 import React, { useRef } from 'react'
 import { BiMailSend } from 'react-icons/bi'
 
 const FormMessage = () => {
   const formRef = useRef<HTMLFormElement>(null)
+  const { account } = useMetaMask()
+
+  if(!account) return
+
   return (
     <form
       ref={formRef}
       action={async (formData) => {
         formRef.current?.reset()
-        await postData(formData)
+        await postData(formData, account)
       }}>
       <div className='flex w-full justify-between p-1 bg-white rounded-sm'>
         <input

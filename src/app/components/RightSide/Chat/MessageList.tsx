@@ -1,14 +1,14 @@
 "use client"
 import Pusher from 'pusher-js';
 import React, { useEffect, useRef, useState } from 'react'
+import * as blockies from 'blockies-ts';
+import { useMetaMask } from 'metamask-react';
 
 interface MessageListProps {
   messages: {
-    message: string;
-    id: string;
-    User: {
-      name: string | null;
-    } | null;
+    message: string,
+    email: string | null,
+    id: string,
   }[]
 }
 
@@ -41,12 +41,13 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
   }, [totalMessages])
 
   return (
-    <div id='messages' className='overflow-y-scroll flex flex-col gap-2 rounded-sm'>
+    <div id='messages' className='overflow-y-scroll h-[95%] flex flex-col gap-2 rounded-sm'>
       {totalMessages.map(msg => (
         <div key={msg.id} className='bg-primary/50 border border-white/30 hover:bg-primary ease-in-out duration-300 rounded-sm p-2'>
           <span className='text-secondary font-semibold text-sm flex items-center gap-1'>
+            {/* <img src={blockies.create({ seed: msg.email ?? '' }).toDataURL()} alt="User hat" className='w-4 rounded-full h-fit' /> */}
             <img src="./Hat.webp" alt="User hat" className='w-4 h-fit' />
-            bigtrader69:
+            {msg.email}
           </span>
           <p className='break-words text-sm text-white'> {msg.message} </p>
         </div>
