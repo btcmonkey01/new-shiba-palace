@@ -151,12 +151,12 @@ export const CoinFlipGame = ({ }) => {
       </button>
     </div>
     <Modal
-      /* open={Boolean(result)} */
-      open={true}
+      open={Boolean(result)}
+      /* open={true} */
       close={resetResult}
     >
       {
-        !result?.didWin ? (
+        result?.didWin ? (
           <>
             <Confetti
               width={width}
