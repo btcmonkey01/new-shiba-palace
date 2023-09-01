@@ -131,6 +131,19 @@ export const COIN_FLIP_ABI = [
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "_maths",
+				"type": "uint256"
+			}
+		],
+		"name": "setMaths",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "bool",
 				"name": "_pause",
 				"type": "bool"

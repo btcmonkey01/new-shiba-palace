@@ -4,6 +4,9 @@ import { useCoinFlip } from "@/app/context/coin-flip";
 import { useGameHistory } from "@/app/context/game-history";
 import { CoinFlipSelection } from "@/app/lib/web3/contract";
 import { CSSProperties, MouseEvent, useState } from "react";
+import { Modal } from "../Modal/modal";
+import { CoinFlipWin } from "./CoinFlipWin";
+import { CoinFlipLose } from "./CoinFlipLose";
 
 export const CoinFlipGame = ({ }) => {
 
@@ -144,5 +147,18 @@ export const CoinFlipGame = ({ }) => {
       >
       </button>
     </div>
+    <Modal
+      open={Boolean(result)}
+      close={resetResult}
+    >
+      {
+        result?.didWin ? (
+          <CoinFlipWin/>
+        ) : (
+          <CoinFlipLose/>
+        )
+      }
+    </Modal>
+
   </div>
 }
