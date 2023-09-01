@@ -3,6 +3,8 @@ import React, { ReactNode, useState } from 'react'
 import { HiHome } from 'react-icons/hi'
 import SideBarItem, { Item } from './SideBarItem'
 import { BiArrowToRight, BiArrowToLeft } from 'react-icons/bi'
+import Link from 'next/link'
+import { Wallet } from '../Wallet'
 const sideBarItemStyles = 'group-hover:text-white ease-in-out duration-300'
 
 const items = [
@@ -45,7 +47,9 @@ const Sidebar = () => {
       <div className='flex flex-col gap-4'>
         <div className='flex flex-col items-start justify-center gap-1'>
           <div className='animatedLogoBackground w-full crounded flex'>
-            <img src="./logo1.webp" className='w-[120px]' alt="Shiba Palace" />
+            <Link href='/'>
+              <img src="./logo1.webp" className='w-[120px]' alt="Shiba Palace" />
+            </Link>
           </div>
         </div>
         <div className='flex flex-col gap-1'>
@@ -74,6 +78,7 @@ const Sidebar = () => {
 
       <div>
         <img src="./Wallet.webp" alt="" className='w-[120px] buttons-animation' />
+        <Wallet/>
       </div>
     </aside>
   )

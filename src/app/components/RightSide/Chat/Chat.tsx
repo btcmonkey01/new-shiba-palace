@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import MessageList from './MessageList';
-import FormMessage from './FormMessage';
-import { prisma } from '@/app/lib/db';
 import { getMessages } from '@/app/actions';
+import FormMessage from './FormMessage';
+import MessageList from './MessageList';
 
 
-const Chat = async () => {
+const Chat = () => {
 
-  const messages = await getMessages()
+  // const messages = await getMessages()
 
   /*   useEffect(() => {
       const get = async () => {
@@ -21,7 +19,7 @@ const Chat = async () => {
 
   return (
     <div className='w-full h-[90%] flex flex-col gap-4'>
-      <MessageList messages={messages} />
+      {/* <MessageList messages={messages} /> */}
       <FormMessage />
     </div>
   )
