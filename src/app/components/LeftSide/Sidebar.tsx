@@ -5,6 +5,7 @@ import SideBarItem, { Item } from './SideBarItem'
 import { BiArrowToRight, BiArrowToLeft } from 'react-icons/bi'
 import Link from 'next/link'
 import { Wallet } from '../Wallet'
+import { toast } from 'react-hot-toast'
 const sideBarItemStyles = 'group-hover:text-white ease-in-out duration-300'
 
 const items = [
@@ -77,7 +78,7 @@ const Sidebar = () => {
       </div>
 
       <div>
-        <img src="./Wallet.webp" alt="" className='w-[120px] buttons-animation' />
+        <img src="./Wallet.webp" alt="" className='w-[120px] buttons-animation' onClick={() => toast.error("Test Toats")} />
         <Wallet/>
       </div>
     </aside>

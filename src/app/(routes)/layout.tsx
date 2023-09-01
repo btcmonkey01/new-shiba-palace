@@ -43,8 +43,8 @@ export default function RootLayout({
             </GameHistoryProvider>
           </MetaMaskProvider>
         </NextAuthProvider>
-      </body>
       <Toaster />
+      </body>
     </html>
   )
 }

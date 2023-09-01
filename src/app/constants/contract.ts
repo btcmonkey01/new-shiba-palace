@@ -182,8 +182,66 @@ export const COIN_FLIP_ABI = [
 ] as const 
 
 export const betAmountList = [
-  "0.001",
-  "0.002",
-  "0.005",
-  "0.010",
+	{
+		amount: "0.005",
+		img: "/images/0.5bone.webp",
+		aspectRatio: "301/80"
+	},
+	{
+		amount: "0.01",
+		img: "/images/1bone.webp",
+		aspectRatio: "219/79"
+	},
+	{
+		amount: "0.025",
+		img: "/images/2.5bone.webp",
+		aspectRatio: "153/40"
+	},
+	{
+		amount: "0.05",
+		img: "/images/5bone.webp",
+		aspectRatio: "245/79"
+	},
+	{
+		amount: "0.08",
+		img: "/images/8bone.webp",
+		aspectRatio: "49/16"
+	}
 ]
+
+export const betAmountListDev = [
+	{
+		amount: "0.5",
+		img: "/images/0.5bone.webp",
+		aspectRatio: "301/80"
+	},
+	{
+		amount: "1",
+		img: "/images/1bone.webp",
+		aspectRatio: "219/79"
+	},
+	{
+		amount: "2.5",
+		img: "/images/2.5bone.webp",
+		aspectRatio: "153/40"
+	},
+	{
+		amount: "5",
+		img: "/images/5bone.webp",
+		aspectRatio: "245/79"
+	},
+	{
+		amount: "8",
+		img: "/images/8bone.webp",
+		aspectRatio: "49/16"
+	}
+]
+
+
+export const getBetAmountList = () => {
+	if(process.env.NODE_ENV === "development") {
+    return betAmountListDev;
+  } else if(process.env.NODE_ENV === "production") {
+    return betAmountList
+  } else return betAmountList
+}

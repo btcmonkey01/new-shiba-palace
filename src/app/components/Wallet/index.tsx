@@ -26,8 +26,8 @@ export const Wallet = () => {
 
   if (status === "connecting") return <div>Connecting...</div>
 
-  if (status === "connected") return <div>
-      <img src={profileImage}/>
+  if (status === "connected") return <div className="flex flex-row place-items-center gap-4">
+      <img src={profileImage ?? null} className="rounded-full"/>
       <p>{reduceAddressString(account)}</p>
     </div>
 

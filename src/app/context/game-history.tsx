@@ -7,7 +7,7 @@ import { GamePlayed } from '../types/types';
 import { isShibariumNetwork } from '../utils/web';
 
 interface GameHistoryValue {
-  gameHistory?: Array<GamePlayed>,
+  gameHistory: Array<GamePlayed>,
   addNewGamePlayed: (game: GamePlayed) => void
 }
 

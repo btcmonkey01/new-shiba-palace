@@ -1,30 +1,40 @@
 "use client"
 import { useMetaMask } from 'metamask-react';
 import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast/headless';
-import { betAmountList } from '../constants/contract';
+import { betAmountList, getBetAmountList } from '../constants/contract';
 import { CoinFlipSelection, initializeCoinFlipResultEvent, startFlip } from '../lib/web3/contract';
 import { GamePlayed } from '../types/types';
 import { useGameHistory } from './game-history';
 import { parseCoinFlipEvent } from '../parser/web3-events';
+import { toast } from 'react-hot-toast';
 
 interface CoinFlipProps {
   coinSelection: CoinFlipSelection,
-  setCoinSelection: Dispatch<SetStateAction<CoinFlipSelection>>,
   betAmount: string,
-  setBetAmount: Dispatch<SetStateAction<string>>,
   loadingFlip: boolean,
   flip: () => void,
   eventConnected: boolean;
   result?: GamePlayed,
+  setCoinSelection: Dispatch<SetStateAction<CoinFlipSelection>>,
+  setBetAmount: Dispatch<SetStateAction<string>>,
 }
 
-const CoinFlipContext = createContext<CoinFlipProps | undefined>(undefined);
+const initialValues: CoinFlipProps= {
+  coinSelection: CoinFlipSelection.HEADS,
+  betAmount: getBetAmountList()[0].amount,
+  loadingFlip: false,
+  eventConnected: false,
+  flip: () => {},
+  setCoinSelection: () => {},
+  setBetAmount: () => {},
+}
+
+const CoinFlipContext = createContext<CoinFlipProps>(initialValues);
 
 export function CoinFlipProvider({ children }: { children: ReactNode }) {
 
   const [ coinSelection, setCoinSelection ] = useState<CoinFlipSelection>(CoinFlipSelection.HEADS);
-  const [ betAmount, setBetAmount ] = useState<string>(betAmountList[0]);
+  const [ betAmount, setBetAmount ] = useState<string>(getBetAmountList()[0].amount);
   const [ loadingFlip, setLoadingFlip ] = useState<boolean>(false);
   const [ eventConnected, setEventConnected] = useState<boolean>(false);
   const [ result, setResult ] = useState<GamePlayed | undefined>(undefined);

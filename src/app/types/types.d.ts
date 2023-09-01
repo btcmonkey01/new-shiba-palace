@@ -1,10 +1,12 @@
 
 export type GamePlayed = {
-  game: "Coin Flip"
+  game: GameType
   address: string
   timestamp: number
-  betAmount: BigInt
-  payout: BigInt
+  betAmount: string
+  payout: string
   didWin: boolean
-  tx: string
+  txn: string
 }
+
+export type GameType = 'Shiba Flip' | ""
