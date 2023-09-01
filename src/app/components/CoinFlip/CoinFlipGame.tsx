@@ -1,10 +1,13 @@
 "use client"
 import { getBetAmountList } from "@/app/constants/contract";
 import { useCoinFlip } from "@/app/context/coin-flip";
+import { useGameHistory } from "@/app/context/game-history";
 import { CoinFlipSelection } from "@/app/lib/web3/contract";
-import { CSSProperties, MouseEvent } from "react";
+import { CSSProperties, MouseEvent, useState } from "react";
 
 export const CoinFlipGame = ({}) => {
+
+  const [selectImage, setSelectImage] = useState<boolean>(false);
 
   const {
     betAmount,
@@ -17,15 +20,23 @@ export const CoinFlipGame = ({}) => {
     eventConnected
   } = useCoinFlip();
 
+  const {
+    gameHistory
+  } = useGameHistory();
+
   const onCoinSelection = (e: MouseEvent<HTMLButtonElement>) => {
     const value = e.currentTarget.value;
     const coinValue = parseInt(value);
     setCoinSelection(coinValue as CoinFlipSelection);
+    const random = Math.floor(Math.random() * 2);
+    setSelectImage(Boolean(random))
   }
 
   const onBetAmountSelection = (e: MouseEvent<HTMLButtonElement>) => {
     const value = e.currentTarget.value;
     setBetAmount(value);
+    const random = Math.floor(Math.random() * 2);
+    setSelectImage(Boolean(random))
   }
 
   const buttonStyles: CSSProperties = {
@@ -111,9 +122,17 @@ export const CoinFlipGame = ({}) => {
         )
       }
     </div>
-    <div>
-      <button onClick={() => flip()}>
-        Flip Flop
+    <hr />
+    <div className="flex justify-center">
+      <button onClick={() => flip()}
+        className={`rounded-lg hover:scale-105 ease-in-out duration-200`}
+        style={{
+          backgroundImage: selectImage ? "url(/images/dog_or_dog.webp)" : "url(/images/all_or_nothing.webp)", 
+          ...buttonStyles, 
+          aspectRatio: "492/177",
+          height: "100px"
+        }}
+      >
       </button>
     </div>
   </div>
