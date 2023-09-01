@@ -26,7 +26,7 @@ export default function RootLayout({
         <NextAuthProvider>
           <div className='flex justify-center'>
             <Sidebar />
-            <div className='w-full lg:w-[60vw] py-4'>
+            <div id='mainContent' className='w-full lg:w-[60vw] py-4 h-[calc(100vh-32px)] overflow-y-scroll'>
               {children}
             </div>
             <RightSide />

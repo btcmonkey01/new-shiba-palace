@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
-    <main id="mainContent" className="flex justify-center h-[calc(100vh-32px)] overflow-y-scroll">
+    <main className="flex justify-center ">
       <MainContent></MainContent>
     </main>
   )
