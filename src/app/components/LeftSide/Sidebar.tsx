@@ -88,7 +88,7 @@ const Sidebar = () => {
 
       <div>
         <img src="./Wallet.webp" alt="" className='w-[120px] buttons-animation' onClick={() => toast.error("Test Toats")} />
-        <Wallet/>
+        <Wallet />
       </div>
     </aside>
   )

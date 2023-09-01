@@ -1,25 +1,34 @@
-import { getMessages } from '@/app/actions';
+import { prisma } from '@/app/lib/db';
 import FormMessage from './FormMessage';
 import MessageList from './MessageList';
 
-
-const Chat = () => {
-
-  // const messages = await getMessages()
-
-  /*   useEffect(() => {
-      const get = async () => {
-        const res = await getMessages();
-        setMessages(res)
+export const getMessages = async () => {
+  const data = await prisma.message.findMany({
+    select: {
+      message: true,
+      id: true,
+      User: {
+        select: {
+          name: true
+        }
       }
-      get();
-      
-    }, []) */
+    },
+    orderBy: {
+      createdAt: 'asc'
+    },
+  })
 
+  return data;
+}
+
+
+const Chat = async () => {
+
+  const messages = await getMessages()
 
   return (
     <div className='w-full h-[90%] flex flex-col gap-4'>
-      {/* <MessageList messages={messages} /> */}
+      <MessageList messages={messages} />
       <FormMessage />
     </div>
   )

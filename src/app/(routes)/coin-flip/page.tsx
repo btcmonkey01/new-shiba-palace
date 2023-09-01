@@ -4,13 +4,14 @@ import { CoinFlipProvider } from "@/app/context/coin-flip";
 
 const Page = () => {
 
-
-  return  <CoinFlipProvider>
-    <div className='flex flex-col items-center justify-center gap-8 w-full'>
-        <CoinFlipGame/>
+  return (
+    <CoinFlipProvider>
+      <div className='flex flex-col items-center justify-center gap-8 w-full'>
+        <CoinFlipGame />
         <RecentWins />
-    </div>
-  </CoinFlipProvider>
+      </div>
+    </CoinFlipProvider>
+  )
 }
 
 export default Page;

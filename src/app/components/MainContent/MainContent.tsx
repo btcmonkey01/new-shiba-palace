@@ -1,6 +1,7 @@
 import React from 'react'
-import RecentWins from '../RecentWins/RecentWins'
+/* import RecentWins from '../RecentWins/RecentWins' */
 import Link from 'next/link'
+import RecentWins from '../RecentWins/RecentWins'
 
 const MainContent = () => {
   return (

@@ -37,22 +37,3 @@ export async function postData(formData: FormData) {
     message: `${JSON.stringify(data)}\n\n`
   })
 }
-
-export const getMessages = async () => {
-  const data = await prisma.message.findMany({
-    select: {
-      message: true,
-      id: true,
-      User: {
-        select: {
-          name: true
-        }
-      }
-    },
-    orderBy: {
-      createdAt: 'asc'
-    },
-  })
-
-  return data;
-}

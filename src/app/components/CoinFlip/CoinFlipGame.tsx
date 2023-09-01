@@ -97,9 +97,9 @@ export const CoinFlipGame = ({}) => {
     </div>
     <div className="flex flex-row flex-wrap justify-center gap-6 max-w-2xl mx-auto">
       {
-        getBetAmountList().map(({amount, img, aspectRatio}) => {
+        getBetAmountList().map(({amount, img, aspectRatio}, i) => {
           return (
-            <div className={`border-4 border-white rounded-lg hover:scale-105 ease-in-out duration-200 ${betAmount === amount ? 'opacity-1 scale-105' : 'opacity-50 hover:opacity-75'}`}>
+            <div key={i} className={`border-4 border-white rounded-lg hover:scale-105 ease-in-out duration-200 ${betAmount === amount ? 'opacity-1 scale-105' : 'opacity-50 hover:opacity-75'}`}>
               <button 
                 className={`border-4 border-black h-full w-40 py-2 rounded-[5px] bg-secondary`}
                 key={amount}
