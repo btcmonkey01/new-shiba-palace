@@ -1,8 +1,11 @@
 "use client"
-import React, { ReactNode, useState } from 'react'
-import { HiHome } from 'react-icons/hi'
+import React, { useState } from 'react'
+import { HiHome, HiOutlineDocumentText } from 'react-icons/hi'
 import SideBarItem, { Item } from './SideBarItem'
 import { BiArrowToRight, BiArrowToLeft } from 'react-icons/bi'
+import { PiGameControllerLight } from 'react-icons/pi'
+import Link from 'next/link'
+
 const sideBarItemStyles = 'group-hover:text-white ease-in-out duration-300'
 
 const items = [
@@ -49,26 +52,34 @@ const Sidebar = () => {
           </div>
         </div>
         <div className='flex flex-col gap-1'>
-          <SideBarItem link='#'
-            icon={<HiHome className={`text-xl ${sideBarItemStyles}`} />}
+          <Link href={'/'} className='cursor-pointer group flex items-center text-white px-4 py-2 crounded hover:bg-[#AEC8CA]/30 ease-in-out duration-300'>
+            <span className={`flex items-center gap-2 text-sm font-bold`}>
+              <HiHome className={`text-xl ${sideBarItemStyles}`} />
+              Home
+            </span>
+          </Link>
+          <SideBarItem link='https://shiba-palace.gitbook.io/shiba-palace-whitepaper/'
+            icon={<HiOutlineDocumentText className={`text-xl ${sideBarItemStyles}`} />}
             type='general'
-            title='Home'>
+            title='Paper'>
           </SideBarItem>
-          <SideBarItem link='#'
-            icon={<HiHome className={`text-xl ${sideBarItemStyles}`} />}
-            type='general'
+          <SideBarItem
+            icon={<PiGameControllerLight className={`text-xl ${sideBarItemStyles}`} />}
+            type='list'
             title='Games'>
+            <Item title='Shibaflip' icon={<img src="./flipIcon.webp" alt="Spanish Flag" className='w-8' />} />
+            <Item title='Shibaslots' icon={<img src="./slotsIcon.webp" alt="Korean Flag" className='w-8' />} />
+            <Item title='Shibacrash' icon={<img src="./crashIcon.webp" alt="Chinese Flag" className='w-8' />} />
+            <Item title='Shibaroulette' icon={<img src="./rouletteIcon.webp" alt="Chinese Flag" className='w-8 ' />} />
           </SideBarItem>
-
-          {/*         <SideBarItem
-          icon={<HiHome className={`text-xl ${sideBarItemStyles}`} />}
-          type='list'
-          title='Contenido'>
-          <Item link='/categories/contenido' type='list' title={'Ultimas Noticias'} icon={<HiHome className={`text-base ${sideBarItemStyles}`} />} ></Item>
-          <Item link='#Videos Principales' type='list' title={'Principales videos'} icon={<HiHome className={`text-base ${sideBarItemStyles}`} />} ></Item>
-          <Item link='#Otros videos' type='list' title={'Otros videos'} icon={<HiHome className={`text-base ${sideBarItemStyles}`} />} ></Item>
-        </SideBarItem> 
-        */}
+          <SideBarItem
+            icon={<img src="./english.webp" alt="Spanish Flag" className='w-5 h-fit' />}
+            type='list'
+            title='English'>
+            <Item title={'Español'} icon={<img src="./spanish.webp" alt="Spanish Flag" className='w-5' />} ></Item>
+            <Item title={'한국어'} icon={<img src="./korea.webp" alt="Korean Flag" className='w-5' />} ></Item>
+            <Item title={'中文'} icon={<img src="./china.webp" alt="Chinese Flag" className='w-5 border border-white' />} ></Item>
+          </SideBarItem>
         </div>
       </div>
 

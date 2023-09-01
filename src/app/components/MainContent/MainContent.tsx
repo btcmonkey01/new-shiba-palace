@@ -10,7 +10,7 @@ const MainContent = () => {
           <img src="./shibaflip.webp" alt="shibaflip"/>
           <img src="./shibaslots.webp" alt="shibaslots"/>
           <img src="./shibacrash.webp" alt="shibacrash"/>
-          <img src="./shibaslots.webp" alt="shibaslots"/>
+          <img src="./shibaroulette.webp" alt="shibaslots"/>
         </div>
       </div>
       <RecentWins />
