@@ -41,7 +41,9 @@ const Sidebar = () => {
           <SideBarItem link='https://shiba-palace.gitbook.io/shiba-palace-whitepaper/'
             icon={<HiOutlineDocumentText className={`text-xl ${sideBarItemStyles}`} />}
             type='general'
-            title='Paper'>
+            title='Paper'
+            target='_blank'
+          >
           </SideBarItem>
           <SideBarItem
             icon={<PiGameControllerLight className={`text-xl ${sideBarItemStyles}`} />}

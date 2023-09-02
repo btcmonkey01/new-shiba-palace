@@ -152,7 +152,6 @@ export const CoinFlipGame = ({ }) => {
     </div>
     <Modal
       open={Boolean(result)}
-      /* open={true} */
       close={resetResult}
     >
       {

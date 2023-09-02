@@ -10,16 +10,17 @@ interface ItemProps {
   icon: JSX.Element
   type?: itemType
   link?: string
+  target?: React.HTMLAttributeAnchorTarget
 }
 interface SideBarItemProps extends ItemProps {
   children: ReactNode
 }
 
-export const Item: React.FC<ItemProps> = ({ link, title, icon, type = 'general' }) => (
+export const Item: React.FC<ItemProps> = ({ link, title, icon, type = 'general', target }) => (
   <>
     {
       link ?
-        <Link href={link ?? '/'} target='_blank' className='cursor-pointer group flex items-center text-white px-4 py-2 crounded hover:bg-[#AEC8CA]/30 ease-in-out duration-300'>
+        <Link href={link ?? '/'} target={target} className='cursor-pointer group flex items-center text-white px-4 py-2 crounded hover:bg-[#AEC8CA]/30 ease-in-out duration-300'>
           <span className={`flex items-center gap-2 text-sm font-bold`}>{icon} {title} </span>
         </Link>
         :
@@ -37,10 +38,10 @@ export const Item: React.FC<ItemProps> = ({ link, title, icon, type = 'general' 
 
 )
 
-const SideBarItem: React.FC<SideBarItemProps> = ({ title, children, type, icon, link }) => {
+const SideBarItem: React.FC<SideBarItemProps> = ({ title, children, type, icon, link, target }) => {
   const [showOptions, setShowOptions] = useState(false)
 
-  if (type === 'general') return <Item link={link} icon={icon} title={title} />
+  if (type === 'general') return <Item link={link} icon={icon} title={title} target={target}/>
 
   return (
     <div className='flex flex-col' >
