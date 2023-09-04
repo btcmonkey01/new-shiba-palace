@@ -19,14 +19,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
+/* h-[calc(100vh-32px)]  */
   return (
     <html lang="en" className='scroll-smooth bg-shibaBackground'>
       <body className={`${popins.className}`}>
         <NextAuthProvider>
           <div className='flex justify-center'>
             <Sidebar />
-            <div id='mainContent' className='w-full lg:w-[60vw] py-4 h-[calc(100vh-32px)] overflow-y-scroll'>
+            <div id='mainContent' className='w-full lg:w-[60vw] py-4 h-screen overflow-y-scroll'>
               {children}
             </div>
             <RightSide />

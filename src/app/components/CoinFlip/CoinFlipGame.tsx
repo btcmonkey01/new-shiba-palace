@@ -3,17 +3,19 @@ import { getBetAmountList } from "@/app/constants/contract";
 import { useCoinFlip } from "@/app/context/coin-flip";
 import { useGameHistory } from "@/app/context/game-history";
 import { CoinFlipSelection } from "@/app/lib/web3/contract";
-import { CSSProperties, MouseEvent, useState } from "react";
+import { CSSProperties, MouseEvent, useRef, useState } from "react";
 import { Modal } from "../Modal/modal";
 import { CoinFlipWin } from "./CoinFlipWin";
 import { CoinFlipLose } from "./CoinFlipLose";
 import { useWindowSize } from "@react-hook/window-size";
 import Confetti from 'react-confetti'
+import { playAudio } from "@/app/lib/utils";
 
 export const CoinFlipGame = ({ }) => {
 
   const [selectImage, setSelectImage] = useState<boolean>(false);
   const [width, height] = useWindowSize()
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const {
     betAmount,
@@ -28,6 +30,7 @@ export const CoinFlipGame = ({ }) => {
   } = useCoinFlip();
 
   const onCoinSelection = (e: MouseEvent<HTMLButtonElement>) => {
+    playAudio('./select.mp3');
     const value = e.currentTarget.value;
     const coinValue = parseInt(value);
     setCoinSelection(coinValue as CoinFlipSelection);
@@ -36,6 +39,7 @@ export const CoinFlipGame = ({ }) => {
   }
 
   const onBetAmountSelection = (e: MouseEvent<HTMLButtonElement>) => {
+    playAudio('./select.mp3');
     const value = e.currentTarget.value;
     setBetAmount(value);
     const random = Math.floor(Math.random() * 2);
@@ -47,8 +51,6 @@ export const CoinFlipGame = ({ }) => {
     backgroundSize: "100%",
     margin: "auto auto",
   }
-
-  console.log({ result })
 
   return <div className="flex flex-col gap-6">
     <div className="flex justify-center ">
@@ -155,18 +157,24 @@ export const CoinFlipGame = ({ }) => {
       close={resetResult}
     >
       {
-        result?.didWin ? (
-          <>
-            <Confetti
-              width={width}
-              height={height}
-            />
-            <CoinFlipWin />
-          </>
-        ) : (
-          <CoinFlipLose />
-        )
+        Boolean(result) &&
+        <>
+          {
+            result?.didWin ? (
+              <>
+                <Confetti
+                  width={width}
+                  height={height}
+                />
+                <CoinFlipWin />
+              </>
+            ) : (
+              <CoinFlipLose />
+            )
+          }
+        </>
       }
+
     </Modal>
 
   </div>

@@ -1,5 +1,10 @@
-import React from 'react'
+import { playAudio } from '@/app/lib/utils';
+import React, { useEffect } from 'react'
 export const CoinFlipWin = () => {
+
+  useEffect(() => {
+    playAudio('./win.mp3');
+  }, [])
 
   return (
     <div className='text-3xl font-semibold flex flex-col gap-4'>
@@ -11,7 +16,7 @@ export const CoinFlipWin = () => {
       </div>
       <hr />
       <div className='bg-secondary/75 hover:bg-secondary ease-in-out duration-300 px-4 py-2 rounded-md'>
-        <button type='button'>CLAIM REWARD</button>
+        <button type='button'>RETURN</button>
       </div>
     </div>
   )

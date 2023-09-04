@@ -7,6 +7,7 @@ import { GamePlayed } from '../types/types';
 import { useGameHistory } from './game-history';
 import { parseCoinFlipEvent } from '../parser/web3-events';
 import { toast } from 'react-hot-toast';
+import { playAudio } from '../lib/utils';
 
 interface CoinFlipProps {
   coinSelection: CoinFlipSelection,
@@ -56,6 +57,7 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
   }
 
   const flip = () => {
+    playAudio('./select.mp3');
     if(!canFlip()) return
     setLoadingFlip(true);
     startFlip({
