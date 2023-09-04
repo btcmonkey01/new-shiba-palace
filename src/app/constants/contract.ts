@@ -271,9 +271,9 @@ export const betAmountList = [
 
 
 export const getBetAmountList = () => {
-	if(process.env.NODE_ENV === "development") {
+	if(process.env.CHAIN_ENV === "development") {
     return betAmountListDev;
-  } else if(process.env.NODE_ENV === "production") {
+  } else if(process.env.CHAIN_ENV === "production") {
     return betAmountList
   } else return betAmountList
 }
