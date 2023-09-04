@@ -1,14 +1,15 @@
 "use client"
 import { useMetaMask } from 'metamask-react';
 import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from 'react';
-import { betAmountList, getBetAmountList } from '../constants/contract';
+import { COIN_FLIP_ADDRESS, betAmountList, getBetAmountList } from '../constants/contract';
 import { CoinFlipSelection, initializeCoinFlipResultEvent, startFlip } from '../lib/web3/contract';
 import { GamePlayed } from '../types/types';
 import { useGameHistory } from './game-history';
-import { parseCoinFlipEvent } from '../parser/web3-events';
+import { parseCoinFlipEvent, parseCoinFlipResponse } from '../parser/web3-events';
 import { toast } from 'react-hot-toast';
 import { playAudio } from '../lib/utils';
 import { SHIBARIUM_NETWORK_ID, SHIBARIUM_NETWORK_PARAMS, isShibariumNetwork } from '../utils/web';
+import web3 from '../lib/web3/web3';
 
 interface CoinFlipProps {
   coinSelection: CoinFlipSelection,
@@ -75,14 +76,47 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
       from: account as string,
       ether: betAmount,
       choice: coinSelection,
-    }).then((value) => {
-      console.log({value});
+    }).then((receipt) => {
+
+      const log = receipt?.logs?.find( ( log: any ) => log?.address === COIN_FLIP_ADDRESS.toLowerCase())
+
+      const params = web3.eth.abi.decodeLog([
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "didWin",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "betAmount",
+          "type": "uint256"
+        }
+      ], log?.data, log?.topics);
+
+      const result = parseCoinFlipResponse({
+        ...params,
+        transactionHash: receipt?.transactionHash,
+      })
+
+      setResult(result);
+      addNewGamePlayed(result);
     }).catch((reason) => {
-      if(reason?.data?.code === -32000) {
-        toast.error("Insufficient funds");
-      } else {
-        toast.error("Something went wrong :(");
-      }
+      console.log({reason})
+      toast.error("Something went wrong :(");
     }).finally(() => {
       setLoadingFlip(false);
     })
@@ -92,8 +126,11 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
     if(status === "connected" && account && isShibariumNetwork(chainId)) {
       const event = initializeCoinFlipResultEvent({
         account: account,
-        onConnected: (event) => setEventConnected(true),
+        onConnected: (event) =>{ 
+          setEventConnected(true)
+        },
         onTrigger: (event) => { 
+          console.log({event})
           const game: GamePlayed = parseCoinFlipEvent(event);
           setResult(game);
           addNewGamePlayed(game);
@@ -104,6 +141,7 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
         },
       })
       return () => {
+        setEventConnected(false);
         event.off("connected", () => {});
         event.off("error", () => {});
         event.off("data", () => {});
