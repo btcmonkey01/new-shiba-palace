@@ -8,6 +8,7 @@ import { useGameHistory } from './game-history';
 import { parseCoinFlipEvent } from '../parser/web3-events';
 import { toast } from 'react-hot-toast';
 import { playAudio } from '../lib/utils';
+import { SHIBARIUM_NETWORK_ID, SHIBARIUM_NETWORK_PARAMS, isShibariumNetwork } from '../utils/web';
 
 interface CoinFlipProps {
   coinSelection: CoinFlipSelection,
@@ -41,12 +42,22 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
   const [ loadingFlip, setLoadingFlip ] = useState<boolean>(false);
   const [ eventConnected, setEventConnected] = useState<boolean>(false);
   const [ result, setResult ] = useState<GamePlayed | undefined>(undefined);
-  const { account, ethereum } = useMetaMask();
+  const { status, account, ethereum, chainId, switchChain, addChain } = useMetaMask();
   const { addNewGamePlayed } = useGameHistory();
 
   const canFlip = (): boolean => {
     if(!account) {
       toast.error("You need to connect your wallet");
+      return false;
+    }
+    if(!isShibariumNetwork(chainId)) {
+      toast.error("Connect to Shibarium Network");
+      switchChain(SHIBARIUM_NETWORK_ID())
+      .catch((error: any) => {
+        if(error.code === 4902) {
+          addChain(SHIBARIUM_NETWORK_PARAMS())
+        }
+      })
       return false;
     }
     if(!ethereum) {
@@ -67,25 +78,25 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
     }).then((value) => {
       console.log({value});
     }).catch((reason) => {
-      toast.error("Something went wrong :(");
-      // TODO: add warning toast: "Something went wrong"
-      console.log({reason});
+      if(reason?.data?.code === -32000) {
+        toast.error("Insufficient funds");
+      } else {
+        toast.error("Something went wrong :(");
+      }
     }).finally(() => {
       setLoadingFlip(false);
     })
   }
 
   useEffect(() => {
-    if(account) {
+    if(status === "connected" && account && isShibariumNetwork(chainId)) {
       const event = initializeCoinFlipResultEvent({
         account: account,
         onConnected: (event) => setEventConnected(true),
         onTrigger: (event) => { 
           const game: GamePlayed = parseCoinFlipEvent(event);
-          console.log({game, event})
           setResult(game);
           addNewGamePlayed(game);
-          console.log({event})
         },
         onError: (event) => {
           toast.error("Something went wrong :(");

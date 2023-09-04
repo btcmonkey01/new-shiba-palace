@@ -76,5 +76,4 @@ export const getAllCoinFlipEvents = async ({account}: getAllEventsProps) => {
     },
     fromBlock: 0,
   });
-  // event.once("data", (event) => console.log({event}))
 }

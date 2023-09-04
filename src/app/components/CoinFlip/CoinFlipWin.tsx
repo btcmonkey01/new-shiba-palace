@@ -1,6 +1,11 @@
-import { playAudio } from '@/app/lib/utils';
-import React, { useEffect } from 'react'
-export const CoinFlipWin = () => {
+  import { playAudio } from '@/app/lib/utils';
+  import React, { useEffect } from 'react'
+
+type CoinFlipWinProps = {
+  amount: string
+}
+
+export const CoinFlipWin = ({ amount }: CoinFlipWinProps) => {
 
   useEffect(() => {
     playAudio('./win.mp3');
@@ -12,7 +17,7 @@ export const CoinFlipWin = () => {
         <h2 className="text-white">CONGRATULATIONS</h2>
         <img src="./token.webp" className='w-[300px]' />
         <p className='text-white'>YOU WON</p>
-        <p className='text-secondary w-full bg-white rounded-md p-1 text-4xl'>0.1 BON</p>
+        <p className='text-secondary w-full bg-white rounded-md p-1 text-4xl'>{amount} BON</p>
       </div>
       <hr />
       <div className='bg-secondary/75 hover:bg-secondary ease-in-out duration-300 px-4 py-2 rounded-md'>

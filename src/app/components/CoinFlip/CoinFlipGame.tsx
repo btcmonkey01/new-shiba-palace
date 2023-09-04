@@ -161,15 +161,15 @@ export const CoinFlipGame = ({ }) => {
         <>
           {
             result?.didWin ? (
-              <>
-                <Confetti
-                  width={width}
-                  height={height}
-                />
-                <CoinFlipWin />
+            <>
+              <Confetti
+                width={width}
+                height={height}
+              />
+                <CoinFlipWin amount={result?.betAmount ?? ""}/>
               </>
             ) : (
-              <CoinFlipLose />
+              <CoinFlipLose amount={result?.betAmount ?? ""} />
             )
           }
         </>

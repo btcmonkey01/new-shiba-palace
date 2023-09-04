@@ -21,7 +21,6 @@ export const Wallet = () => {
   useEffect(() => {
     if(chainId) {
       if(!isShibariumNetwork(chainId)) {
-        console.log({chainId, ethereum})
         switchChain(SHIBARIUM_NETWORK_ID())
         .catch((error: any) => {
           if(error.code === 4902) {

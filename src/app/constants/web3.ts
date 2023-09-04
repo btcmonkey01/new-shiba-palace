@@ -1,6 +1,6 @@
 export const SHIBARIUM_BETA_ID = "0x2cf";
 
-export const SHIBARIUM_ID = "";
+export const SHIBARIUM_ID = "0x6d";
 
 export const SHIBARIUM_PARAMS = {
   chainId: "109",

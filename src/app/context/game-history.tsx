@@ -24,9 +24,10 @@ export function GameHistoryProvider({ children }: { children: ReactNode }) {
   const { status, account, chainId } = useMetaMask();
 
   const addNewGamePlayed = (game: GamePlayed) => {
-    setGameHistory([
-      ...gameHistory,
-      game,
+    const newGame = { ...game }
+    setGameHistory( prev => [
+      ...prev,
+      newGame,
     ])
   }
 
@@ -38,7 +39,7 @@ export function GameHistoryProvider({ children }: { children: ReactNode }) {
         setGameHistory([...CoinFlipHistory])
       });
     }
-  }, [account])
+  }, [account, chainId])
 
   return (
     <GameHistoryContext.Provider value={{ gameHistory, addNewGamePlayed }}>
