@@ -142,7 +142,8 @@ export const CoinFlipGame = ({ }) => {
     <hr />
     <div className="flex justify-center">
       <button onClick={() => flip()}
-        className={`rounded-lg hover:scale-105 ease-in-out duration-200`}
+        disabled={loadingFlip}
+        className={`rounded-lg enabled:hover:scale-105 ease-in-out duration-200 disabled:opacity-50`}
         style={{
           backgroundImage: selectImage ? "url(/images/dog_or_dog.webp)" : "url(/images/all_or_nothing.webp)",
           ...buttonStyles,

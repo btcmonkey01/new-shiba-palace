@@ -38,34 +38,11 @@ export const COIN_FLIP_ABI = [
 		"type": "event"
 	},
 	{
-		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "sender",
-				"type": "address"
-			},
-			{
-				"indexed": false,
 				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "LogEvent",
-		"type": "event"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "fallback"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint8",
 				"name": "_choiceId",
-				"type": "uint8"
+				"type": "uint256"
 			}
 		],
 		"name": "flip",
@@ -90,6 +67,25 @@ export const COIN_FLIP_ABI = [
 		"type": "function"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "LogEvent",
+		"type": "event"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address payable",
@@ -101,6 +97,40 @@ export const COIN_FLIP_ABI = [
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_maths",
+				"type": "uint256"
+			}
+		],
+		"name": "setMaths",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bool",
+				"name": "_pause",
+				"type": "bool"
+			}
+		],
+		"name": "setPause",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "fallback"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
 	},
 	{
 		"inputs": [],
@@ -131,32 +161,6 @@ export const COIN_FLIP_ABI = [
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "_maths",
-				"type": "uint256"
-			}
-		],
-		"name": "setMaths",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bool",
-				"name": "_pause",
-				"type": "bool"
-			}
-		],
-		"name": "setPause",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "",
 				"type": "address"
@@ -180,9 +184,9 @@ export const COIN_FLIP_ABI = [
 				"type": "bool"
 			},
 			{
-				"internalType": "enum CoinFlip.CoinFlipSelection",
+				"internalType": "uint256",
 				"name": "choice",
-				"type": "uint8"
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -206,10 +210,6 @@ export const COIN_FLIP_ABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "receive"
 	}
 ] as const 
 
