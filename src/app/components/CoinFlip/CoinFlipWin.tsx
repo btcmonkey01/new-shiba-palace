@@ -15,7 +15,7 @@ export const CoinFlipWin = ({ amount }: CoinFlipWinProps) => {
     <div className='text-3xl font-semibold flex flex-col gap-4'>
       <div className='flex flex-col items-center gap-2'>
         <h2 className="text-white">CONGRATULATIONS</h2>
-        <img src="./token.webp" className='w-[300px]' />
+        <img src="./Token.webp" className='w-[300px]' />
         <p className='text-white'>YOU WON</p>
         <p className='text-secondary w-full bg-white rounded-md p-1 text-4xl'>{amount} BON</p>
       </div>

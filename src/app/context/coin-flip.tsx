@@ -109,7 +109,7 @@ export function CoinFlipProvider({ children }: { children: ReactNode }) {
         event.off("data", () => {});
       }
     }
-  }, [account])
+  }, [account, chainId])
 
   const resetResult = () => {
     setResult(undefined);
