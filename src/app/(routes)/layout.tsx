@@ -4,14 +4,18 @@ import Sidebar from '../components/LeftSide/Sidebar'
 import { NextAuthProvider } from '../components/Providers/Providers'
 import RightSide from '../components/RightSide/RightSide'
 import './globals.css'
-import { MetaMaskProvider } from 'metamask-react'
 import { Toaster } from 'react-hot-toast'
 
 const popins = Poppins({ subsets: ['latin'], weight: '400' })
 
 export const metadata: Metadata = {
   title: 'Shiba Palace',
-  description: 'First Shibarium Casino',
+  description: 'Shiba Palace is the number one crypto casino on the SHIBARIUM network.',
+  openGraph: {
+    images: [
+      "/images/home-logo.png"
+    ]
+  }
 }
 
 export default function RootLayout({

@@ -50,9 +50,9 @@ type initializeEventOptions = {
  */
 export const initializeCoinFlipResultEvent = ({account, onConnected, onTrigger, onError}: initializeEventOptions) => {
   const event = coinFlip.events.CoinFlipResult({
-    filter: {
+/*     filter: {
       sender: [account]
-    },
+    }, */
     fromBlock: "latest"
   });
   event.on("connected", onConnected)
@@ -71,9 +71,9 @@ type getAllEventsProps = {
  */
 export const getAllCoinFlipEvents = async ({account}: getAllEventsProps) => {
   return await coinFlip.getPastEvents("CoinFlipResult",{
-    filter: {
+/*     filter: {
       sender: [account]
-    },
+    }, */
     fromBlock: 0,
   });
 }

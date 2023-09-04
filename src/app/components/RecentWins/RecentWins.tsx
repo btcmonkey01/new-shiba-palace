@@ -33,7 +33,7 @@ const RecentWins = ({filterGame}: RecentWinsProps) => {
               <td> {timestamp} </td>
               <td> ${Number(betAmount)} BONE </td>
               <td> {didWin ? '+' : '-'}100% </td>
-              <td> {didWin ? '+' : '-'}${Number(payout)} </td>
+              <td> {didWin ? '+' : '-'}${Number(payout)} BONE </td>
               {/* <td> <img src={'./btc.png'} className='w-8' alt="Coin Image" /></td> */}
               <td>
                 <a className='text-blue-600 hover:text-blue-500 hover:underline' href={`https://puppyscan.shib.io/tx/${txn}`} target='_blank'>{reduceAddressString(txn)}</a>

@@ -26,8 +26,8 @@ export function GameHistoryProvider({ children }: { children: ReactNode }) {
   const addNewGamePlayed = (game: GamePlayed) => {
     const newGame = { ...game }
     setGameHistory( prev => [
-      ...prev,
       newGame,
+      ...prev,
     ])
   }
 
@@ -36,7 +36,8 @@ export function GameHistoryProvider({ children }: { children: ReactNode }) {
       getAllCoinFlipEvents({account})
       .then(events => {
         const CoinFlipHistory: Array<GamePlayed> = events.map( event => parseCoinFlipEvent(event))
-        setGameHistory([...CoinFlipHistory])
+        const reversed = CoinFlipHistory.reverse();
+        setGameHistory([...reversed])
       });
     }
   }, [account, chainId])
